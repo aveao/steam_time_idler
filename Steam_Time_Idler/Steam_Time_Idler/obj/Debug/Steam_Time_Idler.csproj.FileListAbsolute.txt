@@ -1,0 +1,12 @@
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\bin\Debug\Steam_Time_Idler.exe.config
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\bin\Debug\Steam_Time_Idler.exe
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\bin\Debug\Steam_Time_Idler.pdb
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.csprojResolveAssemblyReference.cache
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.Form1.resources
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.Properties.Resources.resources
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.csproj.GenerateResource.Cache
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.exe
+c:\users\ardao\documents\visual studio 2015\Projects\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.pdb
+C:\Users\Ardao\Documents\steam_time_idler\Steam_Time_Idler\Steam_Time_Idler\bin\Debug\Steam_Time_Idler.exe.config
+C:\Users\Ardao\Documents\steam_time_idler\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.exe
+C:\Users\Ardao\Documents\steam_time_idler\Steam_Time_Idler\Steam_Time_Idler\obj\Debug\Steam_Time_Idler.pdb
