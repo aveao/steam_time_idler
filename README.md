@@ -8,7 +8,11 @@ Also you need to have a public profile, so it can get your game list.
 ##Use at your own risk!
 
 ##Credits:
--Arda Özkal
-The developer of this.
--jshackles
+
+####Arda Özkal
+
+The developer of this
+
+####jshackles
+
 Developer of steam-idle.exe. And some parts of my code (< stop idling, start idling) that are taken from his Idle Master project.
