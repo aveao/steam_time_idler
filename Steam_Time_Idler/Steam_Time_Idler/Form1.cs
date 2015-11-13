@@ -35,7 +35,7 @@ namespace Steam_Time_Idler
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label4.Text = "Status: please wait, this will take some time";
+            label4.Text = "Status: Fetching game list.";
             MessageBox.Show("This will take some time if you have a lot of games (~1 minute on slow internet + slow pc + 1100 games) and it will start after you click OK.");
             if (textBox1.Text == "me")
             {
@@ -46,23 +46,11 @@ namespace Steam_Time_Idler
             var wc = new WebClient();
             var returnedlines = wc.DownloadString(link + "games?tab=all&xml=1").Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
             wc.Dispose();
-
-            /*
-            <game>
-			<appID>252950</appID>
-			<name><![CDATA[Rocket League]]></name>
-			<logo><![CDATA[http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/252950/58d7334290672887fdd47e25251f291b812c895e.jpg]]></logo>
-			<storeLink><![CDATA[http://steamcommunity.com/app/252950]]></storeLink>
-			<hoursLast2Weeks>5.3</hoursLast2Weeks>
-			<hoursOnRecord>5.3</hoursOnRecord>
-			<statsLink><![CDATA[http://steamcommunity.com/id/ardaozkal/stats/252950]]></statsLink>
-			<globalStatsLink><![CDATA[http://steamcommunity.com/stats/252950/achievements/]]></globalStatsLink>
-		    </game>
-            */
+            
             long currentappid = 0;
             var currentline = 0;
 
-            foreach (string line in returnedlines)
+            foreach (string line in returnedlines) //TODO: XML PARSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER
             {
                 currentline++;
                 if (line.Contains("<appID>"))
@@ -109,7 +97,7 @@ namespace Steam_Time_Idler
         private void button2_Click(object sender, EventArgs e)
         {
             label4.Text = "Status: Starting idling.";
-            foreach (long game in games.Keys)
+            foreach (long game in games.Keys) //checks game times, spaghetti code
             {
                 decimal timeplayed = 0;
                 games.TryGetValue(game, out timeplayed);
@@ -129,7 +117,7 @@ namespace Steam_Time_Idler
         }
 
         static void stopidle()
-        {
+        { //taken from idlemaster project by jshackles. 
             try
             {
                 var username = WindowsIdentity.GetCurrent().Name;
@@ -161,31 +149,32 @@ namespace Steam_Time_Idler
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Interval = Convert.ToInt32(numericUpDown1.Value * 60000); //sets the time of the future ones to longer time intervals than 100msec
+            timer1.Interval = Convert.ToInt32((numericUpDown1.Value + 1) * 60000); //does an +1, because steam considers this playtime as 4 minutes and not 5.
             var maxidle = 20; //I contacted jshackles and asked him about the limit (no answers yet) but yeah I'm hoping 20 is ok.
 
-            if (gamestoidle.Count == 0)
+            if (gamestoidle.Count == 0) //If we are done
             {
-                timer1.Stop();
-                numericUpDown1.Enabled = true;
+                timer1.Stop(); //lets stop working shall we?
+                numericUpDown1.Enabled = true; //lets reenable these
                 button1.Enabled = true;
                 textBox1.Enabled = true;
 
-                label4.Text = "Status: Done idling.";
-                MessageBox.Show("Done");
+                label4.Text = "Status: Done idling."; //updating the status
+                MessageBox.Show("Done"); //And the users lived happily ever after. Thank me later.
             }
             else
             {
                 stopidle(); //not the best way as it can interfere with idle master, but why does one run both at the same time?
-                if (gamestoidle.Count < maxidle) //so yeah, running 30 processes when there is 29 games to idle will cause a crash
+                if (gamestoidle.Count < maxidle) //so yeah, running 20 processes when there is 19 games to idle will cause a crash
                 {
-                    maxidle = gamestoidle.Count; //lets ste the max idle limit to the available game amount to prevent crashes
+                    maxidle = gamestoidle.Count; //lets set the max idle limit to the available game amount to prevent crashes. TODO: still crashes
                 }
 
                 for (int i = 0; i <= maxidle; i++)
                 {
-                    Process.Start(new ProcessStartInfo("steam-idle.exe", gamestoidle[0].ToString()) { WindowStyle = ProcessWindowStyle.Hidden }); //this line was GLORIOUSLY ~~stolen~~ borrowed from idle master. Thanks jshackles.
+                    Process.Start(new ProcessStartInfo("steam-idle.exe", gamestoidle[0].ToString()) { WindowStyle = ProcessWindowStyle.Hidden }); //this line was borrowed from idle master. Thanks jshackles.
                     gamestoidle.Remove(gamestoidle[0]); //might be problematic sometime but who cares atm lol, will look more into this if this ever gets filed as an issue. Also tip for future self: use i instead of 0 on top and remove the idle game AFTER you play it.
+                    //TODO: FIX THIS
                 }
                 label4.Text = "Status: Idling, " + gamestoidle.Count + " games left.";
             }
