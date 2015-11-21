@@ -16,3 +16,6 @@ The developer of this
 ####jshackles
 
 Developer of steam-idle.exe. And some parts of my code (< stop idling, start idling) that are taken from his Idle Master project.
+
+####Riley Labrecque
+This project uses Steamworks.NET and CSteamworks, which are created by Riley Labrecque.
